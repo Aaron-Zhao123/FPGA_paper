@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.9.17)  24 SEP 2015 16:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.9.17)  24 SEP 2015 23:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -532,43 +532,49 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 30.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-) [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+)
+Overfull \hbox (6.45993pt too wide) in paragraph at lines 38--39
+\T1/aer/m/n/9 pre-vi-ous num-ber. Par-al-lel fixed-point op-er-a-tors have a sm
+aller
+ []
+
+[1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
 <Adder.pdf, id=17, 478.77098pt x 379.82384pt>
 File: Adder.pdf Graphic file (type pdf)
  <use Adder.pdf>
-Package pdftex.def Info: Adder.pdf used on input line 70.
+Package pdftex.def Info: Adder.pdf used on input line 75.
 (pdftex.def)             Requested size: 216.81107pt x 144.5432pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
 
- []
-
-
-Overfull \hbox (6.67491pt too wide) in paragraph at lines 105--106
-[]\T1/aer/m/n/9 Apart from these stan-dard hard-ware im-ple-men-ta-tions, some
  []
 
 <dividing_upper_block.pdf, id=18, 743.77875pt x 441.65pt>
 File: dividing_upper_block.pdf Graphic file (type pdf)
 
 <use dividing_upper_block.pdf>
-Package pdftex.def Info: dividing_upper_block.pdf used on input line 110.
+Package pdftex.def Info: dividing_upper_block.pdf used on input line 114.
 (pdftex.def)             Requested size: 260.17892pt x 195.12854pt.
 
-Overfull \hbox (20.17892pt too wide) in paragraph at lines 110--111
+Overfull \hbox (20.17892pt too wide) in paragraph at lines 114--115
  [][] 
  []
 
+
+Overfull \hbox (6.67491pt too wide) in paragraph at lines 111--118
+[]\T1/aer/m/n/9 Apart from these stan-dard hard-ware im-ple-men-ta-tions, some
+ []
+
 [2 <./Adder.pdf> <./dividing_upper_block.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 126--127
+Underfull \hbox (badness 10000) in paragraph at lines 132--133
 
  []
 
 
-Overfull \hbox (2.19395pt too wide) in paragraph at lines 146--147
+Overfull \hbox (2.19395pt too wide) in paragraph at lines 152--153
 \T1/aer/m/n/9 tains un-rolling of the adder and sep-a-ra-tion of residue's MSDs
 .
  []
@@ -576,45 +582,39 @@ Overfull \hbox (2.19395pt too wide) in paragraph at lines 146--147
 <flowchart.pdf, id=711, 528.97626pt x 431.6125pt>
 File: flowchart.pdf Graphic file (type pdf)
  <use flowchart.pdf>
-Package pdftex.def Info: flowchart.pdf used on input line 150.
+Package pdftex.def Info: flowchart.pdf used on input line 156.
 (pdftex.def)             Requested size: 260.1692pt x 216.80676pt.
 
-Overfull \hbox (20.1692pt too wide) in paragraph at lines 150--151
+Overfull \hbox (20.1692pt too wide) in paragraph at lines 156--157
  [][] 
  []
 
-<parsing_tree.pdf, id=712, 182.25737pt x 203.61597pt>
-File: parsing_tree.pdf Graphic file (type pdf)
- <use parsing_tree.pdf>
-Package pdftex.def Info: parsing_tree.pdf used on input line 176.
-(pdftex.def)             Requested size: 91.12845pt x 101.80772pt.
-
-[3 <./flowchart.pdf> <./parsing_tree.pdf>]
-<newton_timing.pdf, id=830, 570.18863pt x 242.82338pt>
+<newton_timing.pdf, id=712, 570.18863pt x 242.82338pt>
 File: newton_timing.pdf Graphic file (type pdf)
  <use newton_timing.pdf>
-Package pdftex.def Info: newton_timing.pdf used on input line 187.
+Package pdftex.def Info: newton_timing.pdf used on input line 192.
 (pdftex.def)             Requested size: 238.49445pt x 130.08891pt.
 
-<figure101.pdf, id=831, 498.21251pt x 377.895pt>
+[3 <./flowchart.pdf>] <figure101.pdf, id=800, 498.21251pt x 377.895pt>
 File: figure101.pdf Graphic file (type pdf)
- <use figure101.pdf>
-Package pdftex.def Info: figure101.pdf used on input line 198.
+
+<use figure101.pdf>
+Package pdftex.def Info: figure101.pdf used on input line 203.
 (pdftex.def)             Requested size: 249.10564pt x 188.94704pt.
 
-Overfull \hbox (9.10564pt too wide) in paragraph at lines 198--199
+Overfull \hbox (9.10564pt too wide) in paragraph at lines 203--204
  [][] 
  []
 
 (./paper.bbl) [4 <./newton_timing.pdf> <./figure101.pdf>] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 3644 strings out of 493089
- 46801 string characters out of 6134842
- 116995 words of memory out of 5000000
- 7015 multiletter control sequences out of 15000+600000
+ 3639 strings out of 493089
+ 46702 string characters out of 6134842
+ 117995 words of memory out of 5000000
+ 7011 multiletter control sequences out of 15000+600000
  55459 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,12n,28p,1023b,267s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,12n,28p,942b,267s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/
 local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2
 015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/201
@@ -633,10 +633,10 @@ s/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
 /urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/ti
 mes/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a
 .pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (4 pages, 1085024 bytes).
+Output written on paper.pdf (4 pages, 1069056 bytes).
 PDF statistics:
- 1005 PDF objects out of 1200 (max. 8388607)
- 677 compressed objects within 7 object streams
+ 974 PDF objects out of 1000 (max. 8388607)
+ 654 compressed objects within 7 object streams
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

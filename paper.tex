@@ -30,22 +30,27 @@
 	\maketitle
 	
 	\begin{abstract}
-		The unique feature of an Online operator is that it allows calculations to generate results starting from the most significant digit (MSD) first, which enables arbitrary numerical precision control. In this paper, we report on an optimized hardware architecture for Online operators to perform efficient serial addition, multiplication and division in a MSD-first fashion on FPGA platform. We compare these operators with conventional fixed-point arithmetic, generated results with multiple precisions. Using our proposed hardware implementation on an FPGA, we demonstrate that our design can provide numerical results with arbitrary precision at runtime without any increase in hardware usage. 
+		The unique feature of an Online operator is that it generates results starting from the most significant digit (MSD). This allows numerical precision to be controlled at run-time. In this paper, we report on an optimized FPGA architecture for Online operators to perform efficient serial addition, multiplication and division. We compare these operators with conventional fixed-point arithmetic, over multiple precisions. Using our proposed FPGA implementation, we demonstrate a novel feature in our implementation of providing numerical results to an arbitrary precision at run-time without any increase in circuit area. 
 	\end{abstract}
 	
 	
 	\section{Introduction}
+    Traditional fixed-point arithmetic operators, both parallel and serial, require precision to be defined at design time. These operations fall into two categories; some, such as multiplication, proceed from the lest significant digit(LSD) to the most significant digit(MSD), while others, such as division, computes from the MSD to LSD. As a result, fixed-point arithmetic performs number-by-number computations: it only takes a new number once finishes calculation of the previous number. Parallel fixed-point operators have a smaller latency compare with serial operators; nevertheless, they consume increasing hardware resources while precision increases. 
 	
-	In traditional fixed point arithmetic, operations normally fall into two categories: whether computing least significant digit (LSD) first or starting from the most significant digit (MSD), such as multiplication and division respectively. Therefore, in certain calculations, the carry could possibly propagate from MSD to LSD and then LSD to MSD, and this brings an inconsistency into traditional arithmetic.
+	Online arithmetic unifies all arithmetic operations in a MSD-first fashion. Parallel Online arithmetic still requires precision to be confirmed at design time, however, serial Online arithmetic allows successive computations to generate answers digit-by-digit. It allows an output digit to be immediately fed into following operations without finishing generation of all digits in that number. This enables production of results with arbitrary precision: we could connect Online operators and generate result to an unlimited precision. Moreover, second advantage is that MSD-first operation could achieve early decision making and thus early termination of calculation. For instance, to compare a fractional number with $0$, we could achieve an early decision once its MSD is generated to be greater than $0$. In contrast, fixed-point arithmetic has to calculate this fractional number in all precisions before making a decision.
 	
-	For arbitrary precision control, traditional digit parallel operators could be applied if we know the precision beforehand. We could apply n-bit parallel operators to generate a result with a precision of n-bit, however this normally requires an increasing hardware usage as the value of $n$ increases. Meanwhile, conventional digit serial solution sometimes calculates from LSD to MSD, generating all precisions and then truncate to a required precision. For instance, to calculate the product of two 32 bits numbers down to a 32 bits precision, a standard digit serial approach is to generate a 64-bit product in all precisions and then truncate it down to 32 bits by shifting. Therefore, conventional digit serial method requires intermediate answer with all precisions and cannot be viewed as a process of arbitrary precision generation. As a result of this, in later sections of this paper, only digit parallel method is applied to compare with our proposed methodology of arbitrary precision generation. 
-	
-	Online arithmetic overcomes these drawbacks and problems by unifying all arithmetic operations in a MSD-first fashion. This MSD-first methodology provides us the flexibility to obtain arbitrary precision without any increase in hardware usage or truncation of full precision results. 
-	Therefore, we discovered a novel way to provide arbitrary precision generation with a non-growing piece of hardware and our implementation could track to any precision at runtime without knowing what precision is needed before running.   
+	Serial Online operators contain the features mentioned above, besides, it only uses a fixed amount of circuitry. Therefore, we discovered a novel way to provide arbitrary precision generation with a non-growing piece of hardware and our implementation could track to any precision at runtime without knowing what precision is needed before running.   
 	
 	In later sections, an introduction to Online arithmetic and correlated algorithms are given, in the meantime, some optimizations of its hardware architectures are discussed.
+	
+	In summary, the contributions of this paper are:
+	\begin{itemize}
+		\item Novel implementation to generate numerical results with arbitrary precision with fixed hardware usage.
+		\item Optimization on hardware architectures of serial Online multiplier and divider.
+		\item Evaluation of serial Online operators based on Newton's method.   
+	\end{itemize}
 		
-	\section{Overview of Online Arithmetic}
+	\section{Background}
 	Online arithmetic has been broadly exploited in the fields of control and signal processing \cite{online_control}\cite{online_signal_processing}. Recently, it also proved its usage in over-clocking computations \cite{Kan_overclocking}. Online arithmetic has some unique features due to the algorithms that it relies on. Firstly, the digits are always taken from the MSD (left to right) and the resulting output always contains an initial delay, which is called the Online delay and denoted by $\delta$ \cite{digital_arithmetic_book}. Second feature is that Online arithmetic employs redundant number representation system to ensure more flexibility in arithmetic calculations. To unify the use of representations, in this paper, all implementations only involve digits in signed representation (SD) in a redundant digit set of \{-1,0,1\}, which we denote \{$\bar{1}$,0,1\} for the ease of presenting. 
 	
 	For each given n-digit operand, we could apply a left-to-right indexing system for its serial computation to the jth iteration, meanwhile, we take considerations of $\delta$ to make this indexing of inputs ($x[j]$ and $y[j]$) and output ($z[j]$) consistent. Since we apply radix-2 system in this paper,  the value of $r$ is equivalent to 2 (1)\cite{digital_arithmetic_book}.
@@ -101,16 +106,17 @@
 		-1 &\text{if $v[j]<-3/4$ }
 		\end{cases} 
 	\end{equation}
-	\subsubsection{Optimization of Multiplication}
-	Apart from these standard hardware implementations, some optimizations are done to speed up the process and also decrease the usage of hardware resources. The optimizations mainly focus on the addition and subtraction in Algorithm 1.
 	
-	Firstly, standard digit serial multiplication employs serial addition and subtraction, nevertheless, we propose a partially unrolled 4-digit parallel Online adder to speed up the adding process, which theoretically improves the speed by 4x. Secondly, due to the shifting caused by $2^{-3}$, 5 MSDs of residue $v[j]$, including 2 integer digits and 3 fractional digits, remain unchanged unless a carry is propagated from its LSDs. We managed to hold the 5 MSDs in two separated 5-bit registers and thus they only change values if carry logic detects a valid propagation (Figure 2(b)). In an unoptimized design, these 5 MSDs of residue value join addition of every single iteration. Our implementation avoids these unnecessary additions, and thus saves hardware resources by 40 LUTs on Altera Cyclone IV series FPGA.     
+	\subsubsection{Optimization of Multiplication}
+	Apart from these standard hardware implementations, some optimizations are done to speed up the process and also decrease the usage of hardware resources. The optimizations mainly focus on the addition and subtraction in Algorithm1.
 	\begin{figure} [ht]
 		\centering
 		\includegraphics[height=2.7in,width=3.6in]{dividing_upper_block}
 		\caption{Online Multiplier}
 	\end{figure}
-	\newpage
+	\vspace{-10pt}
+	
+	Firstly, standard digit serial multiplication employs serial addition and subtraction, nevertheless, we propose a partially unrolled 4-digit parallel Online adder to speed up the adding process, which theoretically improves the speed by 4x. Secondly, due to the shifting caused by $2^{-3}$, 5 MSDs of residue $v[j]$, including 2 integer digits and 3 fractional digits, remain unchanged unless a carry is propagated from its LSDs. We managed to hold the 5 MSDs in two separated 5-bit registers and thus they only change values if carry logic detects a valid propagation (Figure 2(b)). In an unoptimized design, these 5 MSDs of residue value join addition of every single iteration. Our implementation avoids these unnecessary additions, and thus saves hardware resources by 40 LUTs on Altera Cyclone IV series FPGA.     
 	
 	\subsection{Division and its optimizations}
 	\subsubsection{Division}
@@ -169,18 +175,17 @@
   		\caption{Newton's Method with two iterations}
   		\label{alg:algorithm3}
   	\end{algorithm}
-To fully visualize the algorithm in terms of data path, we could apply a tree structure of operators to represent one iteration in Newton's method (Figure 4).  
-\vspace{-8pt}
-\begin{figure} [ht]
-	\centering
-	\includegraphics[scale=0.5]{parsing_tree}
-	\caption{Data path of one iteration in Newton's method}
-\end{figure}
-\vspace{-8pt}
+%To fully visualize the algorithm in terms of data path, we could apply a tree structure of operators to represent one %iteration in Newton's method (Figure 4).  
+%\vspace{-8pt}
+%\begin{figure} [ht]
+%	\centering
+%	\includegraphics[scale=0.5]{parsing_tree}
+%	\caption{Data path of one iteration in Newton's method}
+%\end{figure}
+%\vspace{-8pt}
+For Online arithmetic, the initial Online delay, $\delta$, in this case, would be additive and increase linearly with the number of operators. For example, for one iteration of Newton's method, the total Online dealy of $x_{j+1}$ would be $\delta_{total}$, which is a summation of two $\delta_{mul}$, two $\delta_{minus}$ and one $\delta_{div}$. In other words, the first MSD of $x_{j+1}$ would come out $\delta_{total}$ cycles later after we feed in the fist MSD of $x_{j}$ .
 
-For Online arithmetic, the initial Online delay, $\delta$, in this case, would be additive and increase linearly with the number of operators. For example, for one iteration of Newton's method, the total Online dealy of $x_{j+1}$ would be $\delta_{total}$, which is a summation of two $\delta_{mul}$, two $\delta_{minus}$ and one $\delta_{div}$. In other words, the first MSD of $x_{j+1}$ would come out $\delta_{total}$ cycles later after we feed in the fist MSD of $x_{j}$.
-
-Despite this Online delay, which is normally a small number of cycles, the unique feature of Online arithmetic makes it able to produce all results, including intermediate results,in a MSD first fashion,as illustrated in Figure 5. 
+Despite this Online delay, which is normally a small number of cycles, the unique feature of Online arithmetic makes it able to produce all results, including intermediate results,in a MSD first fashion,as illustrated in Figure 4. 
 \vspace{-10pt}
 \begin{figure} [ht]
 	\centering
@@ -191,8 +196,8 @@ Despite this Online delay, which is normally a small number of cycles, the uniqu
 
 In this experiment, we compare our novel hardware implementation with conventional fixed-point arithmetic.
 Altera Cyclone IV FPGA is selected as the hardware platform for our design and we collect results after Place and Route in Quartus II.   
-Fixed-point operators are implemented by IP cores provided by Altera. As mentioned in Section 1, fixed-point operators are implemented to perform parallel computations, assuming the precision of these computations are already specified. The correctness of hardware results are verified with the co-simulation in Matlab. Notice we generated results with precision of 8 digits, 16 digits, 32 digits, 64 digits and 128 digits for Online arithmetic. 
-\vspace{-8pt}
+Fixed-point operators are implemented by IP cores provided by Altera. We choose to use fixed-point operators to perform parallel computations, assuming the precision of these computations are already specified. The correctness of hardware results are verified with the co-simulation in Matlab. Notice we generated results with precision of 8 digits, 16 digits, 32 digits, 64 digits and 128 digits for Online arithmetic. 
+
 \begin{figure} [ht]
 	\centering
 	\includegraphics[scale=0.5]{figure101}
