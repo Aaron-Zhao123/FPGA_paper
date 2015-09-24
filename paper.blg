@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paper.aux
+The style file: acm.bst
+Database file #1: citation101.bib
+Warning--entry type for "altera" isn't style-file defined
+--line 28 of file citation101.bib
+Warning--empty journal in Kan_parallel_operators
+You've used 8 entries,
+            2253 wiz_defined-function locations,
+            579 strings with 5348 characters,
+and the built_in function-call counts, 3016 in all, are:
+= -- 290
+> -- 120
+< -- 0
++ -- 49
+- -- 41
+* -- 210
+:= -- 456
+add.period$ -- 22
+call.type$ -- 8
+change.case$ -- 43
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 136
+empty$ -- 259
+format.name$ -- 41
+if$ -- 662
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 8
+newline$ -- 41
+num.names$ -- 18
+pop$ -- 60
+preamble$ -- 1
+purify$ -- 36
+quote$ -- 0
+skip$ -- 104
+stack$ -- 0
+substring$ -- 193
+swap$ -- 50
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 30
+warning$ -- 1
+while$ -- 29
+width$ -- 9
+write$ -- 82
+(There were 2 warnings)
