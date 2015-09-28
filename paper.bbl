@@ -25,9 +25,7 @@
 {\sc {Galli}, R., and {Tenca}, A.~F.}
 \newblock {Design and evaluation of online arithmetic for signal processing
   applications on FPGAs}.
-\newblock In {\em Advanced Signal Processing Algorithms, Architectures, and
-  Implementations XI\/} (Nov. 2001), F.~T. {Luk}, Ed., vol.~4474 of {\em
-  Society of Photo-Optical Instrumentation Engineers (SPIE) Conference Series},
+\newblock F.~T. {Luk}, Ed., vol.~4474 of {\em SPIE Conference Series},
   pp.~134--144.
 
 \bibitem{Kan_parallel_operators}
@@ -39,13 +37,12 @@
 {\sc Shi, K., Boland, D., Stott, E., Bayliss, S., and Constantinides, G.~A.}
 \newblock Datapath synthesis for overclocking: Online arithmetic for
   latency-accuracy trade-offs.
-\newblock In {\em Proceedings of the 51st Annual Design Automation
-  Conference\/} (New York, NY, USA, 2014), DAC '14, ACM, pp.~190:1--190:6.
+\newblock DAC '14, ACM, pp.~190:1--190:6.
 
 \bibitem{online_mul}
 {\sc Trivedi, K.~S., and Ercegovac, M.~D.}
 \newblock On-line algorithms for division and multiplication.
-\newblock In {\em Computer Arithmetic (ARITH), 1975 IEEE 3rd Symposium on\/}
-  (1975), IEEE, pp.~161--167.
+\newblock In {\em ARITH, 1975 IEEE 3rd Symposium on\/} (1975), IEEE,
+  pp.~161--167.
 
 \end{thebibliography}
